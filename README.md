@@ -118,3 +118,5 @@ SCORE_THRESHOLD = 0.60            # Umbral minimo de similitud
 Juan Jose Restrepo-Juan Manuel Reyes 
 Proyecto final — Programación III 
 Universidad Tecnológica de Pereira (UTP)
+
+Fecha de entrega: 3 de Junio, 2026
