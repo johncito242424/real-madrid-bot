@@ -1,0 +1,6 @@
+ollama_data/ 
+qdrant_storage/ 
+data/ 
+__pycache__/ 
+*.pyc 
+OllamaSetup.exe 

@@ -1,0 +1,62 @@
+================================================================================
+          GUÍA RÁPIDA: STACK RAG (DOCKER, LLM & PYTHON)
+================================================================================
+
+1. DOCKER & COMPOSE (Infraestructura)
+--------------------------------------
+- Levantar todo:[cite: 1]
+  $ docker-compose up -d
+  (Descarga y arranca los servicios en segundo plano).
+
+- Pausar (Sin borrar nada):[cite: 1]
+  $ docker-compose stop
+  (Como apagar el monitor; todo queda guardado).
+
+- Limpieza (Borrar contenedores):[cite: 1]
+  $ docker-compose down
+  (Borra las 'cajas', pero los datos en volumes se quedan).
+
+- Ver estado:[cite: 1]
+  $ docker ps
+  (Muestra si Qdrant (6333) y Ollama (11434) están corriendo).
+
+2. OLLAMA (El Cerebro)
+----------------------
+Para hablar con Ollama, usamos Docker como intermediario:[cite: 1]
+
+- Descargar/Correr modelo:[cite: 1]
+  $ docker exec -it ollama_server ollama run llama3:8b-instruct-q4_0
+  (Usa 'q4_0' para ahorrar RAM. Es la versión cuantizada).
+
+- Listar modelos en el PC:[cite: 1]
+  $ docker exec -it ollama_server ollama list
+
+- Borrar modelo:[cite: 1]
+  $ docker exec -it ollama_server ollama rm [nombre]
+
+3. PYTHON & VENV (Tu Código)
+----------------------------
+- Crear entorno (burbuja):[cite: 1]
+  $ python -m venv activate
+
+- Activar entorno:[cite: 1]
+  Windows:  .\nombre\Scripts\activate
+  
+  Linux/Mac: source venv/bin/activate
+
+- Instalar librerías:[cite: 1]
+  $ pip install qdrant-client ollama langchain-community langgraph pymupdf
+
+4. QDRANT (La Memoria)
+----------------------
+- Dashboard visual: http://localhost:6333/dashboard[cite: 1]
+  (Aquí verás los vectores y las colecciones de tus PDFs).
+
+5. ADVERTENCIAS CRÍTICAS
+------------------------
+- DATOS: No borres las carpetas './ollama_data' o './qdrant_storage' de tu PC.[cite: 1]
+  Si las borras, pierdes los modelos descargados y los vectores.
+- PUERTOS: Si sale error de puerto, cierra cualquier Ollama o Qdrant que[cite: 1]
+  tengas abierto fuera de Docker.
+- RAM: Si el PC se congela, usa 'docker stats' para ver el consumo.[cite: 1]
+================================================================================
