@@ -13,7 +13,7 @@ from rag import ask
 # CONFIGURACIÓN
 # ─────────────────────────────────────────────────────────────
 
-TOKEN     = "8659826110:AAHySmfvVaU5_zR4FholGhxVGZFG3fVopXA"
+TOKEN     = "8959811102:AAEhnCt8p4srBjvKhFQgoP4r2lA99UwB2zU"
 NGROK_URL = "https://flanked-speculate-award.ngrok-free.dev"
 PORT      = 8443
 PATH      = "/webhook"
