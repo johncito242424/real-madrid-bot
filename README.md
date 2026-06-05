@@ -127,7 +127,8 @@ Uso: ¿Como prender el bot?:
 <img width="543" height="32" alt="image" src="https://github.com/user-attachments/assets/35c98c83-5a08-4d1e-93c0-a0b5b4df554c" />
 
 7. Listo, abre y preguntale lo que quieras al bot :)
-   <img width="503" height="500" alt="image" src="https://github.com/user-attachments/assets/2ffb0953-5d4c-49dd-8b94-f82a251e8778" />
+<img width="508" height="267" alt="image" src="https://github.com/user-attachments/assets/46a0156f-7b21-4406-8e0c-5d6f491acd36" />
+   
    
 
 ---
