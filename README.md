@@ -1,4 +1,6 @@
 # Real Madrid Bot 
+<img width="503" height="551" alt="image" src="https://github.com/user-attachments/assets/2ffb0953-5d4c-49dd-8b94-f82a251e8778" />
+
 
 Chatbot conversacional 100% local basado en arquitectura RAG que responde preguntas sobre el Real Madrid Club de Futbol. Este ChatBot funciona a traves de Telegram.
 
@@ -42,6 +44,16 @@ proyfinal/
 └── README.md
 ```
 
+¿Que hace cada archivo? 
+config.py —  Es el archivo de configuración centralizada de todo el proyecto. Contiene las variables que todos los demás archivos necesitan: la dirección y puerto de Qdrant, el nombre de la colección donde se guardan los vectores, el tamaño del vector, los nombres de los modelos de embedding y LLM, los parámetros de chunking como tamaño y solapamiento, y los parámetros de recuperación como cuántos chunks buscar y cuál es el score mínimo aceptable. La ventaja de tenerlo centralizado es que si necesitas cambiar algo, lo cambias en un solo lugar y afecta todo el sistema.
+
+Intake.py-Es el script que se corre una sola vez para preparar los datos. Su trabajo es tomar los PDFs del Real Madrid que están en la carpeta data/, extraer el texto página por página con PyMuPDF, dividir ese texto en fragmentos pequeños llamados chunks con solapamiento para no perder contexto, convertir cada chunk en un vector de 768 números usando nomic-embed-text via Ollama, y subir todos esos vectores a Qdrant en lotes. También tiene una función ingest_all() que procesa todos los PDFs de la carpeta automáticamente, y los IDs de los vectores son determinísticos para evitar duplicados si se re-ingesta el mismo archivo.
+
+rag.py-Es el corazón del sistema. Implementa el pipeline completo de Retrieval-Augmented Generation. Cuando recibe una pregunta, primero la convierte en un vector usando nomic-embed-text con el prefijo search_query:, luego busca en Qdrant los chunks más similares usando similitud coseno, aplica un reranking híbrido que combina el score semántico de Qdrant con un bonus lexical por coincidencia exacta de palabras, filtra los resultados por un umbral mínimo de similitud, construye un prompt con el contexto recuperado y la pregunta, y finalmente llama al LLM llama3.2:3b para generar la respuesta. La función pública ask() orquesta todo este proceso.
+
+bot.py-Es la interfaz del sistema con el usuario. Implementa el bot de Telegram usando webhook a través de ngrok. Tiene tres handlers: el comando /start que muestra el mensaje de bienvenida, el handler de texto que detecta saludos y responde con el menú de opciones o llama a rag.ask() para responder preguntas, y el handler de documentos que acepta PDFs enviados por el usuario, los descarga, los guarda en data/ y llama a intake.ingest() para indexarlos automáticamente en Qdrant sin necesidad de reiniciar nada.
+
+docker-compose.yml Es el archivo que define la infraestructura del proyecto. Configura dos servicios: Qdrant, la base de datos vectorial que corre en el puerto 6333 y guarda sus datos en ./qdrant_storage para que persistan entre reinicios, y Ollama, el servidor de modelos de IA que corre en el puerto 11434 y guarda los modelos descargados en ./ollama_data. Ollama tiene configurada la GPU Nvidia para acelerar la inferencia. Con un solo comando docker-compose up -d levanta todo el sistema listo para usar.
 
 
 ## Requisitos
