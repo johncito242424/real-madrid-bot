@@ -108,6 +108,26 @@ En `bot.py`, actualiza la variable `NGROK_URL` con la URL que te da ngrok.
 py -3.12 bot.py
 ```
 
+Uso: ¿Como prender el bot?:
+1. Abre Docker Desktop y espera a que la ballena deje de moverse.
+<img width="1278" height="720" alt="image" src="https://github.com/user-attachments/assets/bd5ae11b-f93d-4108-9b97-67a4a85786f4" />
+
+2. Abre CMD y navega a la carpeta: 
+<img width="375" height="30" alt="image" src="https://github.com/user-attachments/assets/4132d865-fa9b-421f-abc7-5c90ddbbc915" />
+
+3. Levanta los contenedores:
+<img width="635" height="34" alt="image" src="https://github.com/user-attachments/assets/5072d42e-b321-4977-b731-77517dc564c9" />
+
+4. Abre el CMD de ngrok y corre:
+<img width="618" height="68" alt="image" src="https://github.com/user-attachments/assets/40997fc1-f594-4241-92d6-dac69c70dc27" />
+
+5. Si la URL de ngrok cambió, actualiza NGROK_URL en bot.py, guarda y haz push.
+
+6. En CMD dentro de proyfinal corre el bot:
+<img width="543" height="32" alt="image" src="https://github.com/user-attachments/assets/35c98c83-5a08-4d1e-93c0-a0b5b4df554c" />
+
+   
+
 ---
 
 ## La Configuracion
