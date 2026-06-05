@@ -126,6 +126,8 @@ Uso: ¿Como prender el bot?:
 6. En CMD dentro de proyfinal corre el bot:
 <img width="543" height="32" alt="image" src="https://github.com/user-attachments/assets/35c98c83-5a08-4d1e-93c0-a0b5b4df554c" />
 
+7. Listo, abre y preguntale lo que quieras al bot :)
+   
    
 
 ---
